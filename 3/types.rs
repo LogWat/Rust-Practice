@@ -10,6 +10,11 @@ fn error_handling(result: Result<isize, String>) -> Result<isize, String> {
     Ok(100)
 }
 
+// バイト数表示
+fn my_print(s: Box<[u8]>) {
+    println!("{:?}", s);
+}
+
 fn main() {
 
     // strとStringの変換==================================
@@ -62,7 +67,22 @@ fn main() {
     let r4: Result<isize, String> = r2.and_then(func);
     let r0: Result<isize, String> = Err("error".to_string());
     let r5: Result<isize, String> = r0.and_then(func); // <- 実行されない
-    
 
+    // Vec
+    let mut v1 = vec![0, 1, 2, 3, 4];
+    let mut v2 = vec![0; 5]; // 縦行列ではなく5列の要素全て0
+    v1.push(5);
+    v2.pop();
+    for i in &v1 {
+        print!("{} ", i);
+    }
+    for i in &v2 {
+        print!("{} ", i)
+    }
+    println!("");
+
+    // Box
+    let byte_array = [b'H', b'e', b'l', b'l', b'o'];
+    my_print(Box::new(byte_array)); // そのまま渡すとエラー
 
 }
