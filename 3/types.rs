@@ -67,6 +67,7 @@ fn main() {
     let r4: Result<isize, String> = r2.and_then(func);
     let r0: Result<isize, String> = Err("error".to_string());
     let r5: Result<isize, String> = r0.and_then(func); // <- 実行されない
+    println!("========");
 
     // Vec
     let mut v1 = vec![0, 1, 2, 3, 4];
@@ -80,9 +81,44 @@ fn main() {
         print!("{} ", i)
     }
     println!("");
+    println!("========");
 
     // Box
     let byte_array = [b'H', b'e', b'l', b'l', b'o'];
     my_print(Box::new(byte_array)); // そのまま渡すとエラー
+    println!("========");
+
+    //=====================================================
+    // if
+    let val0 = 1;
+    let val1 = if val0 > 0 {
+        val0
+    } else {
+        -val0
+    };
+    println!("val1 = {}", val1);
+
+    // 繰り返し処理
+    let mut count0 = 0;
+    let val2 = loop {
+        println!("count is {}", count0);
+        count0 += 1;
+        if count0 == 10 {
+            break count0;
+        }
+    };
+    println!("val2 is {}", val2);
+    for i in 0..10 {
+        println!("i is {}", i);
+    }
+    
+    // match (switch)
+    let i = 334;
+    match i {
+        1 => println!("1"),
+        2 => println!("2"),
+        3 => println!("3"),
+        _ => println!("OHH MY GOD"),
+    }
 
 }
