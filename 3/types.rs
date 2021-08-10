@@ -25,7 +25,7 @@ fn main() {
     mypets[1].age += 1; // inc使えない? 0-indexed
 
     for i in &mypets {
-        println!("{:?}", i);
+        println!("{} : {}", i.name, i.age);
     }
 
 }
