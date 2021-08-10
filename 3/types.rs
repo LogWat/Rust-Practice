@@ -108,7 +108,7 @@ fn main() {
         }
     };
     println!("val2 is {}", val2);
-    for i in 0..10 {
+    for i in 0..10 { // <= range(10)のような書き方 0..=10もOK
         println!("i is {}", i);
     }
     
