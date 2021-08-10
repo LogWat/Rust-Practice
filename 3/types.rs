@@ -4,7 +4,7 @@ fn main() {
     let s1: String = String::from("Very Sleepy!");
     let s2: &str = &s1;
     let s3: String = s2.to_string();
-    println!("========")
+    println!("========");
     println!("{}", s3);
 
     // 配列, struct
@@ -25,11 +25,11 @@ fn main() {
     ];
     mypets[1].age += 1; // inc使えない? 0-indexed
 
-    println!("========")
+    println!("========");
     for i in &mypets {
         println!("{} : {}", i.name, i.age);
     }
-    println!("========")
+    println!("========");
 
     // 頻出する標準ライブラリの型
     // ex. Resultでのパターンマッチの例
