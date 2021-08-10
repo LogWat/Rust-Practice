@@ -1,13 +1,25 @@
+fn func(code: isize) -> Result<isize, String> {
+    println!("code: {}", code);
+    Ok(100)
+}
+
+// ? 演算子
+fn error_handling(result: Result<isize, String>) -> Result<isize, String> {
+    let code = result?; // Okならcode=Ok(), Errならreturn
+    println!("code: {}", code);
+    Ok(100)
+}
+
 fn main() {
 
-    // strとStringの変換
+    // strとStringの変換==================================
     let s1: String = String::from("Very Sleepy!");
     let s2: &str = &s1;
     let s3: String = s2.to_string();
     println!("========");
     println!("{}", s3);
 
-    // 配列, struct
+    // 配列, struct======================================
     struct Pets {
         name: String,
         age: u32,
@@ -31,7 +43,7 @@ fn main() {
     }
     println!("========");
 
-    // 頻出する標準ライブラリの型
+    // 頻出する標準ライブラリの型==============================
     // ex. Resultでのパターンマッチの例
     let r1: Result<isize, String> = Ok(200);
     match r1 {
@@ -44,7 +56,13 @@ fn main() {
     }
     // ネストが深くならないような書き方
     let r3: Result<isize, String> = Err("error".to_string());
-    println!("code: {}", r3.unwrap_or(-1)) // -1が出力される
+    println!("code: {}", r3.unwrap_or(-1)); // -1が出力される
+
+    // .unwrap_or()以外のメソッド
+    let r4: Result<isize, String> = r2.and_then(func);
+    let r0: Result<isize, String> = Err("error".to_string());
+    let r5: Result<isize, String> = r0.and_then(func); // <- 実行されない
+    
 
 
 }

@@ -14,6 +14,7 @@
 `Option`, `Result`, `Vec`, `Box`
 - `Option`型は戻り値がないかもしれないとき
 - `Result`型は失敗するかもしれないとき
+- `?`演算子 : `Ok()`なら値展開, `Err()`ならそれを`return`
 ---
 
 
