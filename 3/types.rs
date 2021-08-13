@@ -1,3 +1,26 @@
+struct character {
+    name: String,
+    level: usize,
+    fav: usize,
+}
+
+impl character {
+    fn disp_chara(&self) {
+        println!("This character name is {}.", self.name);
+        println!("Level = {}", self.level);
+        println!("Fav Level = {}", self.fav);
+    }
+    fn level_up(&mut self) {
+        self.level += 1;
+        println!("[update] This character's level is {}", self.level);
+    }
+    fn fav_up(&mut self, by: usize) {
+        self.fav += by;
+        println!("[update] This character's fav level is {}", self.fav);
+    }
+}
+
+
 fn func(code: isize) -> Result<isize, String> {
     println!("code: {}", code);
     Ok(100)
@@ -13,6 +36,13 @@ fn error_handling(result: Result<isize, String>) -> Result<isize, String> {
 // バイト数表示
 fn my_print(s: Box<[u8]>) {
     println!("{:?}", s);
+}
+
+fn abs(number: isize) -> isize {
+    if number < 0 {
+        return -number;
+    }
+    number
 }
 
 fn main() {
@@ -108,8 +138,12 @@ fn main() {
         }
     };
     println!("val2 is {}", val2);
+
     for i in 0..10 { // <= range(10)のような書き方 0..=10もOK
         println!("i is {}", i);
+    }
+    for i in 1..=10 {
+        println!("{}", i)
     }
     
     // match (switch)
@@ -120,5 +154,22 @@ fn main() {
         3 => println!("3"),
         _ => println!("OHH MY GOD"),
     }
+
+    // functions **************
+    // basic
+    println!("{}", abs(-100)); 
+
+    // impl
+    let mut t = character {
+        name: String::from("irohanihoheto"),
+        level: 15,
+        fav: 5,
+    };
+    t.disp_chara();
+    t.level_up();
+    t.fav_up(2);
+    t.disp_chara();
+
+
 
 }
