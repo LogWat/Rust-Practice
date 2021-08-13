@@ -18,6 +18,16 @@ impl character {
         self.fav += by;
         println!("[update] This character's fav level is {}", self.fav);
     }
+
+    // スレッドチェーン
+    fn disp_name(&self) -> &Self {
+        println!("This character name is {}.", self.name);
+        self
+    }
+    fn disp_level(&self) -> &Self {
+        println!("This character's level is {}.", self.level);
+        self
+    }
 }
 
 
@@ -169,6 +179,9 @@ fn main() {
     t.level_up();
     t.fav_up(2);
     t.disp_chara();
+    // メソッドチェーン
+    t.disp_name().disp_level();
+
 
 
 
