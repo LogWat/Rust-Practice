@@ -4,6 +4,9 @@ struct character {
     fav: usize,
 }
 
+#[derive(Eq, PartialEq)]
+struct A(isize);
+
 impl character {
     fn disp_chara(&self) {
         println!("This character name is {}.", self.name);
@@ -182,7 +185,5 @@ fn main() {
     // メソッドチェーン
     t.disp_name().disp_level();
 
-
-
-
+    println!("{:?}", A(29) == A(28));
 }
