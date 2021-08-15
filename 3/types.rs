@@ -186,4 +186,18 @@ fn main() {
     t.disp_name().disp_level();
 
     println!("{:?}", A(29) == A(28));
+
+    let important_data = "Hayakunetaindesukedo".to_string();
+    calc_data(&important_data); // 参照渡し
+
+    let x1 = 100;
+    let y1 = &x1; // 不可変の参照渡しはいくらでも可能
+    dbg!(y1);
+    let mut x2 = 1000;
+    let mut y2 = &x2; // 可変の参照渡しは一つだけしかできない
+    dbg!(y2);
+}
+
+fn calc_data(data: &String) {
+    println!("{}", data);
 }
