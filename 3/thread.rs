@@ -4,7 +4,7 @@ fn main() {
     let mut handles = Vec::new();
 
     for x in 0..10 {
-        handles.push(thread::spawn(|| {
+        handles.push(thread::spawn(move || {
             println!("Hello, world!: {}", x);
         }));
     }
