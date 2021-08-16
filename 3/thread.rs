@@ -1,5 +1,5 @@
 use std::thread;
-use std::rc::Rc;
+use std::sync::{Arc, Mutex};
 
 fn main() {
     let mut handles = Vec::new();
@@ -15,12 +15,14 @@ fn main() {
         let _ = handle.join();
     }
 
-    let mut data = Rc::new(Vec![1; 10]);
+    let mut data = Arc::new(Mutex::new(vec![1; 10]));
 
     for x in 0..10 {
-        let data_ref = data.clone(); // <= Rcの参照カウンタ増加
+        let data_ref = data.clone(); // <= Arcの参照カウンタ増加
         handles2.push(thread::spawn(move || {
-            data_ref[x] += 1;
+            // dataへの可変参照を.lock()によって生成
+            let mut data = data_ref.lock().unwrap();
+            data[x] += 1;
         }));
     }
 
