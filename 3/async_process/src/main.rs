@@ -20,6 +20,16 @@ impl Future for CountDown {
     }
 }
 
+async fn async_add(left: isize, right: isize) -> isize {
+    left + right
+}
+
+async fn some_async_function() -> isize {
+    let ans = async_add(2, 3).await;
+    println!("{}", ans);
+    ans
+}
+
 fn main() {
     let countdown_future1 = CountDown(10);
     let countdown_future2 = CountDown(20);
@@ -28,4 +38,7 @@ fn main() {
     for (i, s) in res.iter().enumerate() {
         println!("{}: {}", i, s);
     }
+    println!(">=====<");
+    // asyncで定義された関数を実行するためのexecutor::block_on
+    executor::block_on(some_async_function());
 }
