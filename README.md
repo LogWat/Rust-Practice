@@ -4,12 +4,13 @@
 
 - ファイル番号と本のChapterは一致
 - コードはなるべく*.mdと分ける
+- Othersファイルにはアルゴリズム系の自作ファイルを保存
 
 **STATUS**
 
 - [x] Chapter 1
 - [x] Chapter 2
-- [ ] Chapter 3
+- [x] Chapter 3
 - [ ] Chapter 4
 - [ ] Chapter 5
 - [ ] Chapter 6
