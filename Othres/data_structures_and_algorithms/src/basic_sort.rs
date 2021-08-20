@@ -31,3 +31,20 @@ pub fn selection_sort(array: &mut Vec<i32>) {
         }
     }
 }
+
+// 基本挿入法
+pub fn insertion_sort(array: &mut Vec<i32>) -> Vec<i32> {
+    let mut ans: Vec<i32> = Vec::with_capacity(array.len());
+    let size = array.len();
+    for _ in 0..size {
+        let mut min_index = 0;
+        for j in 0..array.len() {
+            if array[min_index] > array[j] {
+                min_index = j;
+            }
+        }
+        ans.push(array[min_index]);
+        array.swap_remove(min_index); // 削除した場所へ配列末尾を挿入することで計算量を減らしている
+    }
+    ans
+}
