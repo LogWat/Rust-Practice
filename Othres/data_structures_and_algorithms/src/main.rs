@@ -6,17 +6,27 @@ use crate::basic_sort::bubble_sort;
 use crate::basic_sort::selection_sort;
 use rand::Rng;
 
-fn main() {
-    let n = 100;
-    let mut array: Vec<i32> = Vec::with_capacity(n); // 100個分の領域確保
-    let mut rng = rand::thread_rng();      // randomのinit
-
-    for _ in 0..n {
-        let i: i32 = rng.gen(); // generate
-        array.push(i%255);
+// 乱数配列生成
+fn vec_gen(size: usize) -> Vec<i32> {
+    let mut array: Vec<i32> = Vec::with_capacity(size); // 指定されたサイズの領域確保
+    let mut rng = rand::thread_rng();          // randomの初期化
+    
+    for _ in 0..size {
+        let x: i32 = rng.gen();
+        array.push(x);
     }
 
-    // bubble_sort(&mut array);
+    array
+}
+
+fn main() {
+    let n = 100;
+
+    let mut array: Vec<i32> = vec_gen(n);
+    bubble_sort(&mut array);
+    println!("{:?}", array);
+
+    array = vec_gen(n);
     selection_sort(&mut array);
     println!("{:?}", array);
 }
