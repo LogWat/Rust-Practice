@@ -1,22 +1,16 @@
-enum MyError {
-    Io(std::io::Error),
-    Num(std::num::ParseIntError),
-}
+use anyhow::{Context, Result};
 
-fn get_int_from_file() -> Result<i32, MyError> {
+fn get_int_from_file() -> Result<i32> {
     let path = "number.txt";
 
-    let num_str = std::fs::read_to_string(path).map_err(|e| MyError::Io(e))?; // Okなら継続 Errなら中断
+    let num_str = std::fs::read_to_string(path).with_context(|| format!("failed to read string from {}", path))?;
 
-    num_str.trim().parse::<i32>().map(|t| t * 2).map_err(|e| MyError::Num(e))
+    num_str.trim().parse::<i32>().map(|t| t * 2).context("failed to parse string")
 }
 
 fn main() {
     match get_int_from_file() {
         Ok(x) => println!("{}", x),
-        Err(e) => match e {
-            MyError::Io(cause) => println!("I/O Error: {}", cause),
-            MyError::Num(cause) => println!("Parse Error: {}", cause),
-        },
+        Err(e) => println!("{}", e),
     }
 }
